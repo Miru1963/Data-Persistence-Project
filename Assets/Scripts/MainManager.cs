@@ -75,6 +75,14 @@ public class MainManager : MonoBehaviour
         m_Points += point; // Add points to the score
         ScoreText.text = $"Score : {m_Points}"; // Update score text
         MainDataManager.Instance.ActualSessionScore = m_Points; // Update session score
+
+        if (m_Points > MainDataManager.Instance.HighScore) // Check for new high score
+        {
+            MainDataManager.Instance.HighScore = m_Points; // Update high score
+            MainDataManager.Instance.BestPlayerName = MainDataManager.Instance.PlayerName; // Update best player name
+            BestScoreText.text = $"Best Score : {MainDataManager.Instance.BestPlayerName} : {MainDataManager.Instance.HighScore}"; // Update best score text
+        }
+
     }
 
     public void GameOver()
